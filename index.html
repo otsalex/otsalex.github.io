@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .language-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .language-btn:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background-color: #555;
+        }
+        #pdf-container {
+            width: 100%;
+            height: calc(100vh - 100px);
+            margin-top: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="language-selection">
+            <h1>Select Language / Valige keel</h1>
+            <div class="language-buttons">
+                <button class="language-btn" onclick="showPDF('english.pdf')">English</button>
+                <button class="language-btn" onclick="showPDF('estonian.pdf')">Eesti</button>
+            </div>
+        </div>
+        <div id="pdf-viewer" class="hidden">
+            <iframe id="pdf-container" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+    <a href="#" class="back-btn hidden" onclick="goBack()">Back</a>
+
+    <script>
+        function showPDF(pdfFile) {
+            document.getElementById('language-selection').classList.add('hidden');
+            document.getElementById('pdf-viewer').classList.remove('hidden');
+            document.querySelector('.back-btn').classList.remove('hidden');
+            document.getElementById('pdf-container').src = pdfFile;
+        }
+
+        function goBack() {
+            document.getElementById('language-selection').classList.remove('hidden');
+            document.getElementById('pdf-viewer').classList.add('hidden');
+            document.querySelector('.back-btn').classList.add('hidden');
+            document.getElementById('pdf-container').src = '';
+        }
+    </script>
+</body>
+</html>
